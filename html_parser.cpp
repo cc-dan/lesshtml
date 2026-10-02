@@ -24,15 +24,7 @@ void read_component_name(std::istream &f, std::ostream &out)
 	if (component != components.end())
 	{
 		std::istringstream raw(component->second);
-		std::ostringstream processed;
-		process(raw, processed);
-
-		for (const char &character : processed.view())
-		{
-			if (character == '\n' || character == '\t')
-				continue;
-			out.put(character);
-		}
+		process(raw, out);
 	}
 	else
 		throw std::runtime_error("couldn't find component \"" + name + "\"");
