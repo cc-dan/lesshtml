@@ -63,6 +63,8 @@ void parse(std::ifstream &f)
 			case '\t':
 				continue;
 			case '{':
+				if (last_component_name.empty())
+					throw std::runtime_error("expected component name");
 				components.insert_or_assign(last_component_name, get_component(f));
 				break;
 			default:
